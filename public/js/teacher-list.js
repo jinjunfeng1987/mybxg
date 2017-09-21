@@ -2,7 +2,7 @@
  * Created by ZHANG on 2017/9/20.
  */
 define(['jquery','template'], function ($,template) {
-	//调用接口获取所有的讲师数据
+	//璋冪敤鎺ュ彛鑾峰彇鎵�鏈夌殑璁插笀鏁版嵁
 	$.ajax({
 		type : 'get',
 		url : '/api/teacher',
@@ -10,6 +10,31 @@ define(['jquery','template'], function ($,template) {
 		success : function (data) {
 			var html = template('teacherTpl',{list:data.result});
 			$('#teacherInfo').html(html);
+
+			//鍚敤娉ㄩ攢鍔熻兘
+			$('.eod').click(function () {
+				var that = this;
+				var td = $(this).closest('td');
+				var tcId = td.attr('data-tcId')
+				var status = td.attr('data-status')
+				$.ajax({
+					type : 'post',
+					url : '/api/teacher/handle',
+					data : {tc_id : tcId,tc_status : status},
+					dataType : 'json',
+					success : function (data) {
+						console.log(data);
+						if(data.code == 200){
+							td.attr('data-status',data.result.tc_status);
+							if(data.result.tc_status == 0){
+								$(that).text('娉ㄩ攢');
+							}else{
+								$(that).text('鍚敤');
+							}
+						}
+					}
+				});
+			})
 		}
 	});
 })
