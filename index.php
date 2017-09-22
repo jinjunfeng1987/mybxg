@@ -1,30 +1,30 @@
 <?php
-//ºó¶ËÂ·ÓÉ £¨¸ù¾ÝURLµÄ²»Í¬ÏìÓ¦²»Í¬µÄÒ³Ãæ£©
+//åŽç«¯è·¯ç”± ï¼ˆæ ¹æ®URLçš„ä¸åŒå“åº”ä¸åŒçš„é¡µé¢ï¼‰
 
 //    header('content-type:text/html; charset=utf-8');
 //    var_dump($_SERVER);
-//±ØÐëÄÜ¹»Í¨¹ýURLÇø·Ö³öÓÃ»§ÏëÒª·ÃÎÊÄÄ¸öÒ³Ãæ
-//Ä¬ÈÏÄ¿Â¼Ãû³Æ
+//å¿…é¡»èƒ½å¤Ÿé€šè¿‡URLåŒºåˆ†å‡ºç”¨æˆ·æƒ³è¦è®¿é—®å“ªä¸ªé¡µé¢
+//é»˜è®¤ç›®å½•åç§°
     $dir = 'main';
-    //Ä¬ÈÏÎÄ¼þÃû³Æ
+    //é»˜è®¤æ–‡ä»¶åç§°
     $fliename = 'index';
 
-    //´¦ÀíURLµÄÂ·¾¶
+    //å¤„ç†URLçš„è·¯å¾„
     if(array_key_exists('PATH_INFO',$_SERVER)){
-        //path_infoÊôÐÔ´æÔÚ
-        $path = $_SERVER['PATH_INFO']; //$path µÃµ½µÄ½á¹û /main/index
-        //È¥µôµÚÒ»¸öÐ±¸Ü
+        //path_infoå±žæ€§å­˜åœ¨
+        $path = $_SERVER['PATH_INFO']; //$path å¾—åˆ°çš„ç»“æžœ /main/index
+        //åŽ»æŽ‰ç¬¬ä¸€ä¸ªæ–œæ 
         $str = substr($path, 1); //  mian/index
-        //×Ö·û´®·Ö¸î£¬ºÍjsÖÐµÄsplit·½·¨ºÜÏñ
+        //å­—ç¬¦ä¸²åˆ†å‰²ï¼Œå’Œjsä¸­çš„splitæ–¹æ³•å¾ˆåƒ
         $ret=explode('/',$str);
         if(count($ret) ==2){
-        //Â·¾¶ÓÐÁ½²ã
-        $dir = $ret[0]; //¸²¸ÇÄ¿Â¼
-        $fliename = $ret[1]; //¸²¸ÇÎÄ¼þÃû³Æ
+        //è·¯å¾„æœ‰ä¸¤å±‚
+        $dir = $ret[0]; //è¦†ç›–ç›®å½•
+        $fliename = $ret[1]; //è¦†ç›–æ–‡ä»¶åç§°
         }else{
         $fliename = 'login';
         }
     }
-    //Ç¶Èë×ÓÒ³Ãæ
+    //åµŒå…¥å­é¡µé¢
     include('./views/'.$dir.'/'.$fliename.'.html');
 ?>
